@@ -31,15 +31,16 @@ namespace SignalRwithAngular.HubConfig
 					timeStamp = DateTime.Now
 				};
 				await _context.Connections.AddAsync(currentUser);
-				_context.SaveChanges();
+				await _context.SaveChangesAsync();
 
 				await Clients.Caller.SendAsync("authMeResponseSuccess", tempPerson);
 			}
 			else
 			{
-				await Clients.Client(currentSignalR_Id).SendAsync("authMeResponseFail");
-			}
-		}
+				//await Clients.Client(currentSignalR_Id).SendAsync("authMeResponseFail");
+                await Clients.Caller.SendAsync("authMeResponseFail");
+            }
+        }
 
 		public async Task askServer(string someTextFromClient)
 		{
