@@ -3,9 +3,9 @@ namespace SignalRwithAngular.Models
 {
 	public class Connection
 	{
-		public int Id { get; set; }
+		public Guid Id { get; set; }
 
-		public int personId { get; set; }
+		public Guid personId { get; set; }
 
 		public string signalR_Id { get; set; }
 

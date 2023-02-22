@@ -3,7 +3,7 @@ namespace SignalRwithAngular.Models
 {
 	public class Person
 	{
-		public int Id { get; set; }
+		public Guid Id { get; set; }
 
 		public string name { get; set; }
 

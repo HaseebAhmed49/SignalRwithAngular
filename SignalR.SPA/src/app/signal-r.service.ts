@@ -2,6 +2,13 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import * as signalR from '@microsoft/signalr';
 import { ToastrService } from 'ngx-toastr';
+import { Observable, Subject } from 'rxjs';
+
+export class user{
+  public id: any;
+  public name: any;
+  public connId: any;
+}
 
 
 @Injectable({
@@ -17,7 +24,12 @@ export class SignalRService {
 
 
   hubConnection: signalR.HubConnection | undefined;
-  personName: any;
+  userData: any;
+
+  ssSubj = new Subject<any>();
+  ssObs(): Observable<any>{
+    return this.ssSubj.asObservable();
+  }
    
   startConnection = () => {
     this.hubConnection = new signalR.HubConnectionBuilder()
@@ -30,10 +42,11 @@ export class SignalRService {
     this.hubConnection
     .start()
     .then(() => {
+      this.ssSubj.next({type:"HubConnection"});
     //   console.log('Hub Connection Started!');
-      console.log("HubConnectionStart");
-      this.askServerListener();
-      this.askServer();
+      // console.log("HubConnectionStart");
+      // this.askServerListener();
+      // this.askServer();
      })
     .catch(err => console.log('Error while starting connection: ' + err))
   }

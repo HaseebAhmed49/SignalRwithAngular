@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { SignalRService } from '../signal-r.service';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -10,12 +11,14 @@ import { SignalRService } from '../signal-r.service';
 export class AuthComponent implements OnInit, OnDestroy {
   
 
-  constructor(public signalRService:SignalRService
+  constructor(
+    public signalRService:SignalRService,
+    public authService: AuthService
     ) { }
 
   ngOnInit(): void {
-    this.authMeListenerSuccess();
-    this.authMeListenerFail();
+    this.authService.authMeListenerSuccess();
+    this.authService.authMeListenerFail();
   }
 
   ngOnDestroy(): void {
@@ -46,7 +49,7 @@ export class AuthComponent implements OnInit, OnDestroy {
   private authMeListenerSuccess(){
     this.signalRService.hubConnection?.on("authMeResponseSuccess", (personInfo: any) => {
       console.log(personInfo);
-      this.signalRService.personName = personInfo.name;
+      this.signalRService.userData.name = personInfo.name;
       this.signalRService.toastr.success("Login Successfull");
       this.signalRService.router.navigateByUrl("/home");
     });    

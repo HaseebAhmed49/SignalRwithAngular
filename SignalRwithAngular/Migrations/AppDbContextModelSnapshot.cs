@@ -24,14 +24,12 @@ namespace SignalRwithAngular.Migrations
 
             modelBuilder.Entity("SignalRwithAngular.Models.Connection", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("personId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("personId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("signalR_Id")
                         .IsRequired()
@@ -47,11 +45,9 @@ namespace SignalRwithAngular.Migrations
 
             modelBuilder.Entity("SignalRwithAngular.Models.Person", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("name")
                         .IsRequired()

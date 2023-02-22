@@ -1,5 +1,6 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AuthService } from './auth/auth.service';
 import { SignalRService } from './signal-r.service';
 
 @Component({
@@ -11,7 +12,8 @@ export class AppComponent implements OnInit, OnDestroy {
   title = 'SignalR.SPA';
 
   constructor(
-    public signalRService: SignalRService)
+    public signalRService: SignalRService,
+    public authService: AuthService)
     {}
 
     ngOnInit(){
