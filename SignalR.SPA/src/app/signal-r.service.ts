@@ -8,8 +8,16 @@ export class user{
   public id: any;
   public name: any;
   public connId: any;
+  public msgs: Array<Message>;
 }
 
+
+export class Message{
+  constructor(
+    public content: string,
+    public mine: boolean
+  ) {}
+}
 
 @Injectable({
   providedIn: 'root'
