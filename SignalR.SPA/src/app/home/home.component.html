@@ -9,8 +9,29 @@
         </div>
     </div>
 
-    <ul class="list-group" *ngFor="let user of Users">
-        <li class="list-group-item">{{user.name}}</li>
-    </ul>
-        
+
+    <div class="row">
+        <div class="col-12 col-sm-3 offset-sm-3 mt-4">
+            <label>Online Users</label>
+            <ul class="list-group" *ngFor="let user of Users">
+                <li class="list-group-item" style="cursor: pointer;" (click)="selectedUser = user">{{user.name}}</li>
+            </ul>    
+        </div>
+
+    <div class="col-12 col-sm-3 mt-4">
+        <label><b>{{selectedUser?.name}}</b></label>
+            <div id="chatBox">
+                <div #msgBox id="msgBox" [scrollTop]="msgBox.scrollHeight">
+                    <div *ngFor="let msg of selectedUser?.msgs"
+                    class="msg"
+                    [class.mine] = "msg.mine"
+                    >
+                    {{msg.content}}
+                    </div>
+                </div>
+                <textarea id="textarea" [(ngModel)]="msg"></textarea>
+                <button id="sendBtn" class="btn btn-primary" [disabled]="selectedUser == null" (click)="sendMsgInv()">Send</button>
+            </div>
+    </div>
+    </div>
 </div>

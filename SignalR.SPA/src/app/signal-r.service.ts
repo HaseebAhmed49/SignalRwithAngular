@@ -8,7 +8,7 @@ export class user{
   public id: any;
   public name: any;
   public connId: any;
-  public msgs: Array<Message>;
+  public msgs: Array<Message> = new Array<Message>;
 }
 
 

@@ -12,6 +12,8 @@ export class HomeComponent implements OnInit {
   constructor(public signalRService: SignalRService) { }
 
   Users: Array<user> = new Array<user>();
+  selectedUser: user | any;
+  msg: string = "";
 
   ngOnInit(): void {
     this.userOnLis();
