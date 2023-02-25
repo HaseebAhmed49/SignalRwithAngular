@@ -18,6 +18,11 @@ namespace SignalRwithAngular.HubConfig
 
 			await Clients.Caller.SendAsync("getOnlineUserResponse", onlineUsers);
         }
+
+		public async Task sendMsg(string connId, string message)
+		{
+			await Clients.Client(connId).SendAsync("sendMsgResponse", Context.ConnectionId, message);
+		}
     }
 }
 

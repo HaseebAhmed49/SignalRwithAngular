@@ -16,7 +16,6 @@
             background-color: #9afcb3;
             margin: 5px 0 5px 0;
             word-break: break-word;
-
             &.mine {background-color: rgb(186, 222, 235);}
             }            
         }

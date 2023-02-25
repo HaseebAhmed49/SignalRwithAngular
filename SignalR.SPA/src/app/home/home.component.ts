@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HubConnectionState } from '@microsoft/signalr';
-import { SignalRService, user } from '../signal-r.service';
+import { Message, SignalRService, user } from '../signal-r.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
   constructor(public signalRService: SignalRService) { }
 
   Users: Array<user> = new Array<user>();
-  selectedUser: user | any;
+  selectedUser: user | undefined;
   msg: string = "";
 
   ngOnInit(): void {
@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
     this.userOfLis();
     this.logOutLis();
     this.getOnlineUsersLis();
+    this.sendMsgLis();
 
     if(this.signalRService.hubConnection?.state == HubConnectionState.Connected) this.getOnlineUserInv()
     else {
@@ -29,6 +30,31 @@ export class HomeComponent implements OnInit {
         }
       });
     }
+  }
+
+  sendMsgInv(): void {
+    if(this.msg?.trim() == "" || this.msg == null) return;
+
+    this.signalRService.hubConnection?.invoke("sendMsg", this.selectedUser?.connId, this.msg)
+    .catch(err => console.error(err));
+
+    if(this.selectedUser?.msgs == null)
+    {
+      this.selectedUser!.msgs = [];
+    }
+
+    this.selectedUser?.msgs.push(new Message(this.msg, true));
+    this.msg = "";
+  }
+
+  private sendMsgLis() : void {
+    this.signalRService.hubConnection?.on("sendMsgResponse", (connId: string, msg: string) => {
+      console.log("sendMsgLis 1");
+      let receiver = this.Users.find(u => u.connId == connId);
+      if(receiver?.msgs == null) receiver!.msgs = [];
+      receiver?.msgs.push(new Message(msg, false));
+      console.log("sendMsgLis end");
+    });
   }
 
   logOut(): void {
