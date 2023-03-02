@@ -33,7 +33,6 @@ namespace SignalRwithAngular.HubConfig
 			if(tempPerson != null) // if credentials are correct
 			{
 				Console.WriteLine("\n" +  tempPerson.name + "logged in" + "\n SignalR ID: " + currentSignalR_Id);
-
 				Connection currentUser = new Connection
 				{
 					personId = tempPerson.Id,
@@ -58,9 +57,7 @@ namespace SignalRwithAngular.HubConfig
 		public async Task askServer(string someTextFromClient)
 		{
 			string tempString;
-
 			tempString = (someTextFromClient == "hey") ? "Message was 'hey'" : "Message was something else";
-
 			await Clients.Clients(this.Context.ConnectionId).SendAsync("askServerResponse", tempString);
 		}
 
@@ -73,7 +70,6 @@ namespace SignalRwithAngular.HubConfig
             if (tempPerson != null) // if credentials are correct
             {
                 Console.WriteLine("\n" + tempPerson.name + "logged in" + "\n SignalR ID: " + currentSignalRID);
-
                 Connection currentUser = new Connection
                 {
                     personId = tempPerson.Id,
@@ -98,11 +94,8 @@ namespace SignalRwithAngular.HubConfig
 		public void logOut(Guid personId)
 		{
 			_context.Connections.RemoveRange(_context.Connections.Where(p => p.personId == personId).ToList());
-
 			_context.SaveChanges();
-
 			Clients.Caller.SendAsync("logOutResponse");
-
 			Clients.Others.SendAsync("userOff", personId);
 		}
 	}
