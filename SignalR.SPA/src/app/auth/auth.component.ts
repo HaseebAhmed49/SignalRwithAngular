@@ -10,7 +10,6 @@ import { AuthService } from './auth.service';
 })
 export class AuthComponent implements OnInit, OnDestroy {
   
-
   constructor(
     public signalRService:SignalRService,
     public authService: AuthService
@@ -31,7 +30,6 @@ export class AuthComponent implements OnInit, OnDestroy {
     if(!form.valid){
       return;
     }
-
     this.authMe(form.value.userName, form.value.password);
     form.reset();
   }

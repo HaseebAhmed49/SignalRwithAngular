@@ -34,7 +34,6 @@ export class HomeComponent implements OnInit {
 
   sendMsgInv(): void {
     if(this.msg?.trim() == "" || this.msg == null) return;
-
     this.signalRService.hubConnection?.invoke("sendMsg", this.selectedUser?.connId, this.msg)
     .catch(err => console.error(err));
 

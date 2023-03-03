@@ -9,6 +9,8 @@
         height: 200px;
         overflow-y:auto
 
+            }            
+
         .msg{
             border: 1px solid lightgray;
             border-radius: 10px;
@@ -17,7 +19,6 @@
             margin: 5px 0 5px 0;
             word-break: break-word;
             &.mine {background-color: rgb(186, 222, 235);}
-            }            
         }
 
         #textarea{
