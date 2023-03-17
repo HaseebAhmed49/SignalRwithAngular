@@ -77,6 +77,7 @@
                   <p class="fw-bold mb-0">Brad Pitt</p>
                   <p class="text-light small mb-0"><i class="far fa-clock"></i> 12 mins ago</p>
                 </div>
+
                 <div class="card-body">
                   <p class="mb-0">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -102,7 +103,7 @@
               <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp" alt="avatar"
                 class="rounded-circle d-flex align-self-start ms-3 shadow-1-strong" width="60">
             </li>
-            <li class="d-flex justify-content-between mb-4">
+            <!-- <li class="d-flex justify-content-between mb-4">
               <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp" alt="avatar"
                 class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60">
               <div class="card mask-custom">
@@ -118,22 +119,16 @@
                   </p>
                 </div>
               </div>
-            </li>
-
-
+            </li> -->
             <li class="mb-5">
               <div class="form-outline form-white">
                 <textarea class="form-control" id="textAreaExample3" rows="4" [(ngModel)]="msg"></textarea>
                 <label class="form-label" for="textAreaExample3">Message</label>
               </div>
             </li>
-            <button type="button" class="btn btn-light btn-lg btn-rounded float-end" [disabled]="selectedUser == null" (click)="sendMsgInv()">Send</button>
-
-          </ul>
-  
+              <button type="button" class="btn btn-light btn-lg btn-rounded float-end" [disabled]="selectedUser == null" (click)="sendMsgInv()">Send</button>
+            </ul>
+          </div>
         </div>
-  
       </div>
-  
-    </div>
   </section>
